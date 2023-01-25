@@ -9,7 +9,8 @@
 # kopas repo dan hapus credit, ga akan jadikan lu seorang developer
 # ©2023 Geez & Ram Team
 import traceback
-
+from sys import version as pyver
+from pyrogram import __version__ as pyrover
 from pyrogram import Client, filters
 from pyrogram.errors import MessageDeleteForbidden
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
@@ -18,7 +19,9 @@ from rams import CMD_HELP, app
 from rams.split.data import Data
 from rams.split.inline import cb_wrapper, paginate_help
 from rams import ids as users
-from config import CMD_HANDLER as cmd
+from config import BOT_VER, BRANCH, CMD_HANDLER as cmd
+modules = CMD_HELP
+branch = BRANCH
 
 @Client.on_callback_query()
 async def _callbacks(_, callback_query: CallbackQuery):
@@ -32,15 +35,23 @@ async def _callbacks(_, callback_query: CallbackQuery):
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     elif query == "close":
-        await app.edit_inline_text(callback_query.inline_message_id, "**— MENUTUP INLINE —**")
+        await app.edit_inline_text(callback_query.inline_message_id, f"𝗥𝗮𝗺𝗣𝘆𝗿𝗼-𝗠𝗮𝘀𝘁𝗲𝗿 \n"
+            "ㅤㅤ⋙ sᴛᴀᴛᴜs : 𝗔𝗸𝘁𝗶𝗳!!! \n"
+            f"ㅤㅤㅤㅤ⋙ ᴍᴏᴅᴜʟᴇs: </b> <code>{len(modules)} Modules</code> \n"
+            f"ㅤㅤㅤㅤ⋙ ᴠᴇʀsɪ ʙᴏᴛ: {BOT_VER} \n"
+            f"ㅤㅤㅤㅤ⋙ ʙʀᴀɴᴄʜ: {branch} \n"
+            f"ㅤㅤㅤㅤ⋙ ᴠᴇʀsɪ ᴘʏʀᴏ: </b> <code>{pyrover}</code>\n"
+            f"ㅤㅤㅤㅤ⋙ ᴠᴇʀsɪ ᴘʏᴛʜᴏɴ: </b> <code>{pyver.split()[0]}</code>")
         return
     elif query == "close_help":
         if callback_query.from_user.id not in users:
            return
         await app.edit_inline_text(
             callback_query.inline_message_id,
-            "**— MENU TELAH DITUTUP —**",
-            reply_markup=InlineKeyboardMarkup(Data.reopen),
+            "**⋙ MENU TELAH DITUTUP ⋘**",
+            reply_markup=InlineKeyboardMarkup(
+                [[InlineKeyboardButton(text="⇕ ʙᴜᴋᴀ ʟᴀɢɪ ⇕", callback_data="reopen")], [InlineKeyboardButton(text="⇕ ᴛᴜᴛᴜᴘ ᴀᴊᴀ ⇕", callback_data="close")]]
+            ),
         )
         return
     elif query == "closed":
@@ -75,7 +86,7 @@ async def on_plug_in_cb(_, callback_query: CallbackQuery):
         this_command += f"  •  **Perintah:** `{cmd}{str(x)}`\n  •  **Fungsi:** `{str(commands[x])}`\n\n"
     this_command += "© @GeezRam | @UserbotCh"
     bttn = [
-        [InlineKeyboardButton(text="⇕ Back ⇕", callback_data="reopen")],
+        [InlineKeyboardButton(text="⇕ ʙᴀᴄᴋ ⇕", callback_data="reopen")],
     ]
     reply_pop_up_alert = (
         this_command
