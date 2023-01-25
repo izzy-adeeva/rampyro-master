@@ -34,16 +34,16 @@ def paginate_help(page_number, loaded_modules, prefix):
     if len(pairs) > number_of_rows:
         pairs = pairs[
             modulo_page * number_of_rows : number_of_rows * (modulo_page + 1)
-        ] + [[   
+        ] + [   
+            (
                 InlineKeyboardButton(
                     text="⇚", callback_data=f"{prefix}_prev({modulo_page})"),
                 InlineKeyboardButton(
-                    text="⇛", callback_data=f"{prefix}_next({modulo_page})")
-            ],
-            [
+                    text="⇭ ᴛᴜᴛᴜᴘ ⇭", callback_data=f"close_help"),
                 InlineKeyboardButton(
-                    text="⇭ Tutup Menu ⇭", callback_data=f"close_help")
-        ]]
+                    text="⇛", callback_data=f"{prefix}_next({modulo_page})"),
+            )
+        ]
     return pairs
 
 
@@ -52,7 +52,7 @@ def cb_wrapper(func):
         users = list_users
         if cb.from_user.id not in users:
             await cb.answer(
-                "Lah? Bawel!!",
+                "Jangan Pencet² plis, Jiji anjing!!!",
                 cache_time=0,
                 show_alert=True,
             )
