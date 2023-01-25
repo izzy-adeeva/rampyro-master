@@ -272,6 +272,8 @@ add_command_help(
         ],
     ],
 )
+
+
 add_command_help(
     "joinleave",
     [
@@ -395,7 +397,7 @@ add_command_help(
     "ping",
     [
         ["ping", "Untuk Menunjukkan Ping Bot Anda."],
-        ["rping", "Untuk Menunjukkan Ping Bot Anda ( Beda animasi doang )."],
+        ["rama", "Untuk Menunjukkan Ping Bot Anda ( Beda animasi doang )."],
     ],
 )
 
@@ -556,8 +558,8 @@ add_command_help(
     "start",
     [
         ["alive", "Mencoba Apakah Bot dalam keadaan menyala atau mati."],
-        ["getrepo", "Memunculkan Repo."],
-        ["creator", "Memberitahukan Pembuat Userbot RamPyro-Bot."],
+        ["repo", "Memunculkan Repo."],
+        ["getstring", "Untuk Mengambil String."],
         ["id", "Balas Pesan Seseorang dan dapatkan Id nya."],
         [f"up `or` {cmd}uptime", "Check bot's current uptime."],
     ],
