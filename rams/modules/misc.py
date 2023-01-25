@@ -85,7 +85,7 @@ async def types(client: Client, message: Message):
 
 @Client.on_message(filters.command(["directmessage", "dm"], cmd) & filters.me)
 async def deem(client: Client, message: Message):
-    Man = await edit_or_reply(message, "⚡ Usage:\n .dm @username Umm")
+    Man = await edit_or_reply(message, "⚡")
     quantity = 1
     inp = message.text.split(None, 2)[1]
     user = await client.get_chat(inp)
@@ -95,7 +95,7 @@ async def deem(client: Client, message: Message):
     if message.reply_to_message:
         reply_to_id = message.reply_to_message.id
         for _ in range(quantity):
-            await Man.edit("Message Sended Successfully ✅")
+            await Man.edit("Sukses Mengirim Pesan ke pengguna tujuan ✅")
             await client.send_message(
                 user.id, spam_text, reply_to_message_id=reply_to_id
             )
