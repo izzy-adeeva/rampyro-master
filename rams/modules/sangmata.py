@@ -23,7 +23,7 @@ from .help import add_command_help
 @Client.on_message(filters.command(["sm", "sg", "sangmata"], cmd) & filters.me)
 async def sg(client: Client, message: Message):
     args = await extract_user(message)
-    lol = await edit_or_reply(message, "Gua kepo, Sapa si namalu pepek....`")
+    lol = await edit_or_reply(message, "`Gua kepo, Sapa si namalu pepek....`")
     if args:
         try:
             user = await client.get_users(args)
